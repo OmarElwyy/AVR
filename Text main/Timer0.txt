@@ -1,0 +1,65 @@
+void Application(void);
+
+void main(void)
+
+{
+//	DIO_voidSetPortDirection(DIO_PORTC,DIO_OUTPUT_PORT);
+//	DIO_voidSetPinDircetion(DIO_PORTD,DIO_PIN0,DIO_PIN_OUTPUT);
+//	DIO_voidSetPinDircetion(DIO_PORTD,DIO_PIN1,DIO_PIN_OUTPUT);
+//	TMR0_voidRunTimer0CTCAsync(Application);
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	TMR0_voidRunTimer0CTCAsync(Application);
+
+	while(1)
+	{
+
+	}
+}
+void Application(void)
+{
+	static u16 counter = 0;
+	counter++;
+
+	if(counter == 4000)
+	{
+		DIO_voidTogglePin(DIO_PORTA , DIO_PIN0);
+		counter = 0 ;
+	}
+}
+
+
+=====================================================================================
+
+
+u16 Global_u8IteratorAsc = 0;
+u16 Global_u8IteratorDsc = 9;
+
+void Application(void);
+void main(void)
+{
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+
+	TMR0_voidRunTimer0CTCAsync(Application);
+
+	while (1)
+	{
+
+	}
+}
+
+void Application(void)
+{
+	static u8 Counter = 0;
+	Counter++;
+	if(Counter == 5)
+	{
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_LOW_PIN);
+	}
+	else if (Counter == 20)
+	{
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+		Counter = 0;
+	}
+}
+

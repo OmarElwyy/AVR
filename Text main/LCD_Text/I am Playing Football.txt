@@ -1,0 +1,35 @@
+void main(void)
+{
+	u8 ARR1[8]={0x0E,
+            0x0E,
+            0x04,
+            0x06,
+            0x15,
+            0x0C,
+            0x14,
+            0x00};
+
+	u8 ARR2[8]={
+    		0x0E,
+            0x0E,
+            0x04,
+            0x16,
+            0x05,
+            0x04,
+            0x04,
+            0x00};
+
+
+	LCD_voidLCDInit();
+	LCD_voidSendSting(",I am Playing");
+
+	LCD_voidGoToRowCol(1,0);
+	LCD_voidSendSting("Football");
+	
+	while(1)
+	{
+		LCD_voidSendSpecialCharacter(ARR1,7,1,12);
+		LCD_voidSendSpecialCharacter(ARR2,7,1,12);
+	}
+
+}

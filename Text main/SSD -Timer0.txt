@@ -1,0 +1,59 @@
+u8 Global_u8IteratorAsc = 0;
+u8 Global_u8IteratorDsc = 9;
+
+void Application(void);
+
+void main(void)
+
+{
+	u8 Local_u8Array[10] = {
+			CATHOD_0,
+			CATHOD_1,
+			CATHOD_2,
+			CATHOD_3,
+			CATHOD_4,
+			CATHOD_5,
+			CATHOD_6,
+			CATHOD_7,
+			CATHOD_8,
+			CATHOD_9,
+	};
+
+	SSD_void_Init(COM_CATHOD , DIO_PORTA , DIO_PORTB , DIO_PIN0);
+	SSD_void_Init(COM_CATHOD , DIO_PORTA , DIO_PORTB , DIO_PIN1);
+
+	TMR0_voidRunTimer0CTCAsync(Application);
+
+	while(1)
+	{
+		SSD_void_OFF(COM_CATHOD , DIO_PORTB , DIO_PIN0);
+		SSD_void_ON(COM_CATHOD , DIO_PORTB , DIO_PIN1);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTA , Local_u8Array[Global_u8IteratorAsc]);
+		_delay_ms(10);
+
+		SSD_void_OFF(COM_CATHOD , DIO_PORTB , DIO_PIN1);
+		SSD_void_ON(COM_CATHOD , DIO_PORTB , DIO_PIN0);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTA , Local_u8Array[Global_u8IteratorDsc]);
+		_delay_ms(10);
+
+	}
+}
+
+void Application(void)
+{
+	static u16 Counter = 0;
+	Counter++;
+
+	if(Counter == 1000)
+	{
+		Global_u8IteratorAsc++;
+		Global_u8IteratorDsc--;
+
+		if(Global_u8IteratorAsc == 10)
+		{
+			Global_u8IteratorAsc = 0;
+			Global_u8IteratorDsc = 9;
+		}
+		Counter = 0;
+	}
+}

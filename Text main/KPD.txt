@@ -1,0 +1,25 @@
+void main(void)
+{
+
+	u8 value = 1 ;
+
+	KPD_voidInit();
+	LCD_voidLCDInit();
+	LED_voidLEDinit(DIO_PORTC , DIO_PIN2);
+
+	LCD_voidSendCharacter('A');
+	while(1)
+	{
+		while(value == 1)
+		{
+			value = KPD_u8GetPressedKey();
+		}
+		LED_voidLED_TGL(DIO_PORTC , DIO_PIN2);
+		_delay_ms(150);
+		LCD_voidSendCharacter(value);
+
+		value = 1 ;
+	}
+
+
+}

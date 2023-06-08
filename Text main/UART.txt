@@ -1,0 +1,30 @@
+void main (void)
+{
+	u8 Received;
+
+	DIO_voidSetPinDirection(DIO_PORTD , DIO_PIN0 , DIO_PIN_INPUT_FLOAT);
+	DIO_voidSetPinDirection(DIO_PORTD , DIO_PIN1 , DIO_PIN_OUTPUT);
+
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_LOW_PIN);
+
+	UART_voidInit();
+
+	UART_TransmitData('I');
+	while(1)
+	{
+		Received = UART_ReceiveData();
+
+		if(Received == '2')
+		{
+			DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+		}
+		else
+		{
+			DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_LOW_PIN);
+		}
+
+		UART_TransmitData('A');
+	}
+}
+

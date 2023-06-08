@@ -1,0 +1,43 @@
+/********************************************************************************/
+/*Author      : Omar Elwy														*/
+/*File Name   : main.c															*/
+/*Layer       : APP																*/
+/*Description : This file contains main Application								*/
+/*Date        : 22 March 2023													*/
+/********************************************************************************/
+
+
+#include "Library/STD_TYPES.h"
+#include "Library/BIT_MATHS.h"
+
+#include <util/delay.h>
+
+#include "MCAL/DIO/DIO_interface.h"
+#include "MCAL/GIE/GIE_interface.h"
+#include "HAL/BUZZER/BUZZER_interface.h"
+
+
+
+void main(void)
+{
+	Buzzer_voidInit(DIO_PORTB,DIO_PIN3);
+	while(1)
+	{
+		Buzzer_voidToneSelector(DO1,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(RE,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(MI,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(FA,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(SO,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(LA,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(TI,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+		Buzzer_voidToneSelector(DO2,DIO_PORTB,DIO_PIN3);
+		_delay_ms(100);
+	}
+}

@@ -1,0 +1,20 @@
+void main(void)
+{
+	u8 ARR[8]={
+			0x0E,
+			0x0E,
+			0x04,
+			0x0E,
+			0x15,
+			0x04,
+			0x0A,
+			0x11};
+	LCD_voidLCDInit();
+	LCD_voidSendSting(",Hello , My Name");
+
+	LCD_voidGoToRowCol(1,0);
+	LCD_voidSendSting("Is Hamoksha");
+
+	LCD_voidSendSpecialCharacter(ARR,7,1,14);
+	while(1);
+}

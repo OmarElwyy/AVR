@@ -1,0 +1,33 @@
+void Application(void);
+
+void main(void)
+{
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+
+	TMR0_voidRunTimer0CTCAPWM(Application);
+
+	while(1)
+	{
+
+	}
+}
+
+void Application(void)
+{
+	static u16 Counter = 0;
+	Counter++;
+
+	if(Counter == 5)
+	{
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_LOW_PIN);
+
+	}
+	else if(Counter == 25)
+	{
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+		Counter=0;
+	}
+}
+
+

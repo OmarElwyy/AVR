@@ -1,0 +1,31 @@
+/************************************************************************/
+/*Author      : Omar Elwy											    */
+/*File Name   : LED_interface.h	                                        */
+/*Layer       : HAL													    */
+/*Description : This file contains Interface Parameter of LED module 	*/
+/*Date        : 25 March 2023                                           */
+/************************************************************************/
+
+#include <util/delay.h>
+#include "Library/BIT_MATHS.h"
+#include "Library/STD_TYPES.h"
+
+#include "MCAL/DIO/DIO_interface.h"
+#include "MCAL/WDT/WDT_interface.h"
+
+void main (void)
+{
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_HIGH_PIN);
+
+	_delay_ms(1000);
+
+	DIO_voidSetPinValue(DIO_PORTA , DIO_PIN0 , DIO_LOW_PIN);
+
+	WDT_voidEnable();
+
+	WDT_voidSetSleepTimer(SLEEP_TIME_1SEC);
+
+	while(1);
+}
+

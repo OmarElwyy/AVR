@@ -1,0 +1,145 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <avr/eeprom.h>
+
+#define F_CPU 16000000UL
+#define BAUD 9600
+#define MYUBRR F_CPU/16/BAUD-1
+
+// EEPROM addresses for storing user access levels
+#define ADMIN_ACCESS_ADDR 0x00
+#define USER_ACCESS_ADDR 0x01
+
+// Command definitions
+#define CMD_ADMIN_LOGIN  'A'
+#define CMD_USER_LOGIN   'U'
+#define CMD_TURN_ON      '1'
+#define CMD_TURN_OFF     '0'
+
+// UART initialization function
+void UART_init(unsigned int ubrr) {
+    UBRR0H = (unsigned char)(ubrr >> 8);
+    UBRR0L = (unsigned char)ubrr;
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+}
+
+// UART transmission function
+void UART_transmit(unsigned char data) {
+    while (!(UCSR0A & (1 << UDRE0)))
+        ;
+    UDR0 = data;
+}
+
+// UART receive function
+unsigned char UART_receive(void) {
+    while (!(UCSR0A & (1 << RXC0)))
+        ;
+    return UDR0;
+}
+
+// EEPROM write function
+void EEPROM_write(uint8_t addr, uint8_t data) {
+    while (EECR & (1 << EEPE))
+        ;
+    EEAR = addr;
+    EEDR = data;
+    EECR |= (1 << EEMPE);
+    EECR |= (1 << EEPE);
+}
+
+// EEPROM read function
+uint8_t EEPROM_read(uint8_t addr) {
+    while (EECR & (1 << EEPE))
+        ;
+    EEAR = addr;
+    EECR |= (1 << EERE);
+    return EEDR;
+}
+
+// Buzzer control functions
+void buzzer_on(void) {
+    // Implement buzzer activation logic
+}
+
+void buzzer_off(void) {
+    // Implement buzzer deactivation logic
+}
+
+int main(void) {
+    // Initialize UART
+    UART_init(MYUBRR);
+    
+    // Variables for user access levels
+    uint8_t admin_access = EEPROM_read(ADMIN_ACCESS_ADDR);
+    uint8_t user_access = EEPROM_read(USER_ACCESS_ADDR);
+    
+    // Variable to store received command
+    unsigned char command;
+    
+    // Infinite loop for command processing
+    while (1) {
+        // Wait for command from mobile device
+        command = UART_receive();
+        
+        // Check command and perform corresponding actions
+        switch (command) {
+            case CMD_ADMIN_LOGIN:
+                // Check if admin access is granted
+                if (admin_access == 1) {
+                    // Admin login successful
+                    UART_transmit('S'); // Send success message to mobile device
+                } else {
+                    // Admin login failed
+                    UART_transmit('F'); // Send failure message to mobile device
+                }
+                break;
+            
+            case CMD_USER_LOGIN:
+                // Check if user access is granted
+                if (user_access == 1) {
+                    // User login successful
+                    UART_transmit('S'); // Send success message to mobile device
+                } else {
+                    // User login failed
+                    UART_transmit('F'); // Send failure message to mobile device
+                }
+                break;
+            
+            case CMD_TURN_ON:
+                // Check if user or admin is logged in
+                if (admin_access == 1 || user_access == 1) {
+                    // Turn on the desired device
+                    buzzer_on();
+                    UART_transmit('O'); // Send success message to mobile device
+                } else {
+                    // No access, send failure message
+                    UART_transmit('F');
+                }
+                break;
+            
+            case CMD_TURN_OFF:
+                // Check if user or admin is logged in
+                if (admin_access == 1 || user_access == 1) {
+                    // Turn off the desired device
+                    buzzer_off();
+                    UART_transmit('O'); // Send success message to mobile device
+                } else {
+                    // No access, send failure message
+                    UART_transmit('F');
+                }
+                break;
+            
+            default:
+                // Invalid command, send error message
+                UART_transmit('E');
+                break;
+        }
+    }
+    
+    return 0;
+}

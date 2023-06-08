@@ -1,0 +1,23 @@
+void main(void)
+{
+
+	/*Local u8 Variable to Receive Data from EEPROM*/
+	u8 Local_u8PortValue = 0;
+
+	/*Initialize Port A as output*/
+	DIO_voidSetPortDirection(DIO_PORTA,DIO_PORT_OUTPUT);
+
+	/*Initialize ATMEGA32 as Master*/
+	TWI_voidMasterInit(NULL);
+
+	/*Send Local Variable to EEPROM Address 100 Absolute*/
+	EEPROM_voidSendData(100,36);
+
+	/*Receive Data from EEPROM*/
+	Local_u8PortValue = EEPROM_u8ReceiveData(100);
+
+	/*Pass Received Data to portA*/
+	DIO_u8SetPortValue(DIO_PORTA,Local_u8PortValue);
+
+	while(1);
+}

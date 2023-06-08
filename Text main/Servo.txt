@@ -1,0 +1,44 @@
+void main (void)
+{
+	DIO_voidSetPinDirection(DIO_PORTD , DIO_PIN5 , DIO_PIN_OUTPUT);
+	TMR1_voidStartFastPWM();
+
+	while(1)
+	{
+		for (u16 Iterator = 750 ; Iterator < 2500 ; Iterator+=100)
+		{
+			SetAngle(Iterator);
+			_delay_ms(500);
+		}
+	}
+}
+
+
+
+
+=================================================================================================================
+
+
+#include <util/delay.h>
+#include "Library/BIT_MATHS.h"
+#include "Library/STD_TYPES.h"
+
+#include "MCAL/DIO/DIO_interface.h"
+#include "MCAL/TIMER_1/TIMER1_interface.h"
+#include "HAL/SERVO_MOTOR/SRVO_interface.h"
+
+void main (void)
+{
+	Set_voidServoInit(OUTPUT_COMPARE_B);
+	TMR1_voidInitFastPWM(OUTPUT_COMPARE_B);
+	Set_PWM_TMR1_Frequancy(50);
+	TMR1_voidStartFastPWM();
+	while(1)
+	{
+		for (u16 i = 750 ; i < 2500 ; i += (175 / 18))
+		{
+			SetAngle(OUTPUT_COMPARE_B , i);
+			_delay_ms(50);
+		}
+	}
+}

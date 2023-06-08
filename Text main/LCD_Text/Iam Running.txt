@@ -1,0 +1,72 @@
+void main(void)
+{
+	u8 ARR3[8]={
+			0x0E,
+			0x0E,
+			0x04,
+			0x0E,
+			0x0E,
+			0x04,
+			0x0A,
+			0x0A};
+
+	u8 ARR4[8]={
+			0x0E,
+			0x0E,
+			0x04,
+			0x0E,
+			0x16,
+			0x04,
+			0x0A,
+			0x12};
+
+	u8 ARR5[8]={
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00};
+
+
+	LCD_voidLCDInit();
+	LCD_voidSendSting(",I am Running");
+
+	while(1)
+	{
+		LCD_voidSendSpecialCharacter(ARR3,7,1,1);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,7,1,1);
+
+		LCD_voidSendSpecialCharacter(ARR4,5,1,2);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,5,1,2);
+
+		LCD_voidSendSpecialCharacter(ARR3,4,1,3);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,4,1,3);
+
+		LCD_voidSendSpecialCharacter(ARR4,3,1,4);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,3,1,4);
+
+		LCD_voidSendSpecialCharacter(ARR3,2,1,5);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,2,1,5);
+
+		LCD_voidSendSpecialCharacter(ARR4,1,1,6);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,1,1,6);
+
+		LCD_voidSendSpecialCharacter(ARR3,0,1,7);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,0,1,7);
+
+		LCD_voidSendSpecialCharacter(ARR4,6,1,8);
+		_delay_ms(200);
+		LCD_voidSendSpecialCharacter(ARR5,6,1,8);
+	}
+
+}

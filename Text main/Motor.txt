@@ -1,0 +1,14 @@
+void main(void)
+{
+
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN2 , DIO_PIN_OUTPUT);
+	while(1)
+	{
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN2 , DIO_HIGH_PIN);
+		_delay_ms(500);
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN2 , DIO_LOW_PIN);
+		_delay_ms(500);
+		DIO_voidSetPinValue(DIO_PORTA , DIO_PIN2 , DIO_HIGH_PIN);
+		_delay_ms(500);
+	}
+}

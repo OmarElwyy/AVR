@@ -1,0 +1,23 @@
+#include "MCAL/DIO/DIO_interface.h"
+#include "MCAL/GIE/GIE_interface.h"
+#include "MCAL/DELAY/DELAY_interface.h"
+#include "MCAL/TIMER_1/TIMER1_interface.h"
+
+void Application(void);
+
+void main(void)
+{
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_OUTPUT);
+	GIE_voidEnable();
+	TMR1_voidDelayAsyncms(OUTPUT_COMPARE_A , 1000 , &Application);
+
+	while(1)
+	{
+
+	}
+}
+
+void Application(void)
+{
+	DIO_voidTogglePin(DIO_PORTA , DIO_PIN0);
+}

@@ -1,0 +1,50 @@
+u16 Ton , T , R1 , R2 , R3;
+
+void App(void);
+
+void main(void)
+{
+	LCD_voidLCDInit();
+	GIE_voidEnable();
+	DIO_voidSetPinDirection(DIO_PORTD,DIO_PIN6,DIO_PIN_INPUT_FLOAT);
+	DIO_voidSetPinDirection(DIO_PORTB,DIO_PIN3,DIO_PIN_OUTPUT);
+	TMR0_voidRunTimer0PWM();
+	TMR1NormalMode(&App);
+	while(1)
+	{
+		while(T==0&&Ton==0)
+		{
+			LCD_voidSendSting("T=");
+			LCD_voidGoToRowCol(0,5);
+			LCD_voidSendNum(T);
+			LCD_voidGoToRowCol(1,0);
+			LCD_voidSendSting("Ton=");
+			LCD_voidGoToRowCol(1,5);
+			LCD_voidSendNum(Ton);
+		}
+	}
+}
+
+void App(void)
+{
+	static u8 Counter = 0;
+	Counter++;
+
+	if (Counter == 1)
+	{
+		R1 = ICR1;
+	}
+	else if (Counter == 2)
+	{
+		R2 = ICR1;
+		CLR_BIT(TCCR1B,ICES1);
+		T = R2 - R1;
+	}
+	else if (Counter == 3)
+	{
+		R3 = ICR1;
+		Ton = R3 - R2;
+		CLR_BIT(TIMSK,TICIE1);
+	}
+
+}

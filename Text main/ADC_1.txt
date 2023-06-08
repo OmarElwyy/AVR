@@ -1,0 +1,24 @@
+u8 * Reading;
+void Application(void);
+
+void main(void)
+{
+
+	DIO_voidSetPortDirection(DIO_PORTC , DIO_OUTPUT_PORT);
+	DIO_voidSetPinDirection(DIO_PORTA , DIO_PIN0 , DIO_PIN_INPUT_FLOAT);
+	ADC_voidInit();
+	ADC_voidSetCallBack(Application);
+
+	while(1)
+	{
+		ADC_u8StartConversionAsync(ADC_CHANNEL0 , Reading);
+	}
+}
+
+void Application(void)
+{
+	u16 Temp;
+	u16 Analog = ((u32)*Reading*5000)/256;
+	Temp = Analog / 10 ;
+	DIO_u8SetPortValue(DIO_PORTC , Temp);
+}

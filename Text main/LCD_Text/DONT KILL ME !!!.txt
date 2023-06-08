@@ -1,0 +1,77 @@
+void main(void)
+{
+	u8 ARR6[8]={
+			0x0E,
+			0x0E,
+			0x04,
+			0x0E,
+			0x15,
+			0x0A,
+			0x11,
+			0x00};
+
+	u8 ARR7[8]={
+			0x00,
+			0x00,
+			0x0F,
+			0x1F,
+			0x0C,
+			0x0C,
+			0x00,
+			0x00};
+
+	u8 ARR8[8]={
+			0x00,
+			0x00,
+			0x03,
+			0x03,
+			0x00,
+			0x00,
+			0x00,
+			0x00};
+
+	u8 ARR9[8]={
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00,
+			0x00};
+
+	u8 ARR10[8]={
+			0x00,
+			0x00,
+			0x00,
+			0x14,
+			0x17,
+			0x1F,
+			0x00,
+			0x00};
+
+	LCD_voidLCDInit();
+    LCD_voidSendSting(",DON'T KILL ME!!");
+    LCD_voidSendSpecialCharacter(ARR7,0,1,1);
+    LCD_voidSendSpecialCharacter(ARR6,1,1,14);
+
+    LCD_voidSendSpecialCharacter(ARR8,2,1,4);
+    _delay_ms(100);
+    LCD_voidSendSpecialCharacter(ARR9,2,1,4);
+
+    LCD_voidSendSpecialCharacter(ARR8,3,1,7);
+    _delay_ms(100);
+    LCD_voidSendSpecialCharacter(ARR9,3,1,7);
+
+    LCD_voidSendSpecialCharacter(ARR8,4,1,10);
+    _delay_ms(100);
+    LCD_voidSendSpecialCharacter(ARR9,4,1,10);
+
+    LCD_voidSendSpecialCharacter(ARR8,5,1,13);
+    _delay_ms(100);
+    LCD_voidSendSpecialCharacter(ARR9,5,1,13);
+
+    LCD_voidSendSpecialCharacter(ARR10,1,1,14);
+    
+    while (1);
+}

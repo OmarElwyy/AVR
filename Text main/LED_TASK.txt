@@ -1,0 +1,159 @@
+/*
+ * main.c
+ *
+ *  Created on: Mar 28, 2023
+ *      Author: oelwy
+ */
+
+#include <util/delay.h>
+
+#include "Library/BIT_MATHS.h"
+#include "Library/STD_TYPES.h"
+
+#include "MCAL/DIO/DIO_interface.h"
+#include "HAL/SSD/SSD_interface.h"
+#include "HAL/LED/LED_interface.h"
+
+
+void main(void)
+{
+
+	u8 SW , SW1 , SW2 , SW3;
+	DIO_voidSetPinDirection(DIO_PORTC , DIO_PIN0 , DIO_PIN_INPUT_PULLUP);							//switch
+	DIO_voidSetPinDirection(DIO_PORTC , DIO_PIN1 , DIO_PIN_INPUT_PULLUP);							//switch
+	DIO_voidSetPinDirection(DIO_PORTC , DIO_PIN2 , DIO_PIN_INPUT_PULLUP);							//switch
+
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN0);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN1);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN2);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN3);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN4);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN5);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN6);												//LED
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN7);												//LED
+
+
+	while(1)
+	{
+		SW = DIO_u8GetPinValue(DIO_PORTC , DIO_PIN0);
+		SW1 = DIO_u8GetPinValue(DIO_PORTC , DIO_PIN1);
+		SW2 = DIO_u8GetPinValue(DIO_PORTC , DIO_PIN2);
+		SW3 = ((SW | (SW1<<1)) | (SW2<<2));
+		switch(SW3)
+		{
+		case 0:
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN0);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN1);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN2);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN3);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN4);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN5);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN6);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN7);
+			_delay_ms(150);
+			break;
+
+		case 1:
+			for(u8 X = 0 ; X <= 7 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X);
+			}
+			break;
+
+		case 2:
+
+			for(u8 X = 8 ; X > 0 ; X--)
+			{
+				LED_voidLED_ON(DIO_PORTA , X-1);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X-1);
+			}
+			break;
+
+		case 3:
+			for(u8 X = 0 ; X <= 3 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				LED_voidLED_ON(DIO_PORTA , 7-X);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X);
+				LED_voidLED_OFF(DIO_PORTA , 7-X);
+			}
+			break;
+
+		case 4:
+			for(u8 X = 4 ; X < 8 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				LED_voidLED_ON(DIO_PORTA , 7-X);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X);
+				LED_voidLED_OFF(DIO_PORTA , 7-X);
+			}
+			break;
+
+		case 5:
+			LED_voidLED_ON(DIO_PORTA , 7);
+			for(u8 X = 6 ;  X >= 1 ; X--)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				_delay_ms(50);
+				LED_voidLED_OFF(DIO_PORTA , X);
+			}
+			LED_voidLED_OFF(DIO_PORTA , 7);
+			LED_voidLED_ON(DIO_PORTA , 0);
+
+			for(u8 X = 1 ; X <= 6 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				_delay_ms(50);
+				LED_voidLED_OFF(DIO_PORTA , X);
+			}
+			LED_voidLED_OFF(DIO_PORTA , 0);
+			break;
+
+		case 6:
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN0);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN1);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN2);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN3);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN4);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN5);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN6);
+			_delay_ms(150);
+			LED_voidLED_TGL(DIO_PORTA , DIO_PIN7);
+			_delay_ms(150);
+			break;
+
+		case 7:
+			for(u8 X = 0 ; X <= 3 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				LED_voidLED_ON(DIO_PORTA , 7-X);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X);
+				LED_voidLED_OFF(DIO_PORTA , 7-X);
+			}
+			for(u8 X = 4 ; X < 8 ; X++)
+			{
+				LED_voidLED_ON(DIO_PORTA , X);
+				LED_voidLED_ON(DIO_PORTA , 7-X);
+				_delay_ms(300);
+				LED_voidLED_OFF(DIO_PORTA , X);
+				LED_voidLED_OFF(DIO_PORTA , 7-X);
+			}
+			break;
+		}
+	}
+}
+

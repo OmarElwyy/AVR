@@ -1,0 +1,201 @@
+void main(void)
+{
+	SSD_void_Init(COM_CATHOD , DIO_PORTB , DIO_PORTB , DIO_PIN7);
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN0);
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN1);
+	LED_voidLEDinit(DIO_PORTA , DIO_PIN2);
+	SSD_void_ON(COM_CATHOD , DIO_PORTB , DIO_PIN7);
+
+	while (1)
+	{
+
+		LED_voidLED_ON(DIO_PORTA , DIO_PIN0);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTA , DIO_PIN0);
+		LED_voidLED_ON(DIO_PORTA , DIO_PIN1);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTA , DIO_PIN1);
+		LED_voidLED_ON(DIO_PORTA , DIO_PIN2);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTA , DIO_PIN2);
+
+	}
+}
+
+
+==========================================================================================================
+
+
+
+void main(void)
+{
+	/*
+	SSD_void_Init(COM_CATHOD , DIO_PORTB , DIO_PORTB , DIO_PIN7);
+	SSD_void_Init(COM_CATHOD , DIO_PORTA , DIO_PORTA , DIO_PIN7);
+	LED_voidLEDinit(DIO_PORTC , DIO_PIN0);
+	LED_voidLEDinit(DIO_PORTC , DIO_PIN1);
+	LED_voidLEDinit(DIO_PORTC , DIO_PIN2);
+	SSD_void_ON(COM_CATHOD , DIO_PORTB , DIO_PIN7);
+	SSD_void_ON(COM_CATHOD , DIO_PORTA , DIO_PIN7);
+
+	while (1)
+	{
+
+		LED_voidLED_ON(DIO_PORTC , DIO_PIN0);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTA , CATHOD_2);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTA , CATHOD_1);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTA , CATHOD_0);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTC , DIO_PIN0);
+		LED_voidLED_ON(DIO_PORTC , DIO_PIN1);
+	 	 */
+		/*
+		LED_voidLED_OFF(DIO_PORTC , DIO_PIN0);
+		LED_voidLED_ON(DIO_PORTC , DIO_PIN1);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTC , DIO_PIN1);
+		LED_voidLED_ON(DIO_PORTC , DIO_PIN2);
+
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_9);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_8);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_7);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_6);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_5);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_4);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_3);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_2);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_1);
+		_delay_ms(1000);
+		SSD_void_DISPLAY_NUMBER(DIO_PORTB , CATHOD_0);
+		_delay_ms(1000);
+
+		LED_voidLED_OFF(DIO_PORTC , DIO_PIN2);
+		 */
+	}
+}
+
