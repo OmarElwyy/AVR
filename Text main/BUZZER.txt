@@ -1,10 +1,3 @@
-/********************************************************************************/
-/*Author      : Omar Elwy														*/
-/*File Name   : main.c															*/
-/*Layer       : APP																*/
-/*Description : This file contains main Application								*/
-/*Date        : 22 March 2023													*/
-/********************************************************************************/
 
 
 #include "Library/STD_TYPES.h"
